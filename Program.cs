@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ejer3.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ejer3Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ejer3Context") ?? throw new InvalidOperationException("Connection string 'ejer3Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
